@@ -1,0 +1,37 @@
+#pragma once
+#ifndef STUDENT_H
+#define STUDENT_H
+
+#include "Group.h"
+#include "Dekanat.h"
+#include "Subject.h"
+#include "Mark.h"
+
+#include <string>
+#include <vector>
+
+class Student {
+public:
+	string firstName;
+	string lastName;
+	string secondName;
+	int age;
+	Group* group;
+	vector<Subject*> subjects;
+	Dekanat* dekanat;
+	vector<Mark*> markList;
+
+	Student(string lastName, string firstName, string secondName, int age);
+
+	static Student* create(string lastName, string firstName, string secondName, int age);
+
+	Student* setDekanat(Dekanat* dekanat);
+
+	void setGroup(Group* group);
+
+	void addSubject(Subject* subject);
+
+	void addMark(Subject* subject, float mark);
+};
+
+#endif
