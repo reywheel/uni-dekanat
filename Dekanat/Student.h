@@ -25,6 +25,8 @@ public:
 
 	static Student* create(string lastName, string firstName, string secondName, int age);
 
+	// Добавление сущностей
+
 	Student* setDekanat(Dekanat* dekanat);
 
 	void setGroup(Group* group);
@@ -32,6 +34,13 @@ public:
 	void addSubject(Subject* subject);
 
 	void addMark(Subject* subject, float mark);
+
+	// Удаление сущностей
+
+	void removeSubject(Subject* subject);
+
+	void removeGroup();
+
 };
 
 #endif

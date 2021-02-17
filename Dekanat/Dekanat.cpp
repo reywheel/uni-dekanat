@@ -1,14 +1,28 @@
 #include "Dekanat.h"
 
-#include <iostream>
-#include <vector>
+void Dekanat::removeSubject(Subject* subject)
+{
+	auto removeIterator = find(this->subjects.begin(), this->subjects.end(), subject);
+	if (removeIterator != this->subjects.end()) this->subjects.erase(removeIterator);
 
+	for (auto student : this->students) {
+		student->removeSubject(subject);
+	}
+}
+
+void Dekanat::removeGroup(Group* group)
+{
+	auto removeIterator = find(this->groups.begin(), this->groups.end(), group);
+	if (removeIterator != this->groups.end()) this->groups.erase(removeIterator);
+
+	for (auto student : this->students) {
+		student->removeGroup();
+	}
+}
 
 Dekanat::Dekanat(string title) {
 	this->title = title;
 }
-
-// Функции добавления сущностей
 
 Dekanat* Dekanat::addStudent(Student* student) {
 	this->students.push_back(student);
@@ -35,8 +49,6 @@ Dekanat* Dekanat::addMark(Student* student, Subject* subject, float mark) {
 	return this;
 }
 
-// Функции поиска сущностей
-
 Student* Dekanat::findStudent(string lastName) {
 	vector<Student*>::iterator student = find_if(this->students.begin(), this->students.end(), [lastName](const Student* student) { return student->lastName == lastName; });
 	return *student;
@@ -51,8 +63,6 @@ Subject* Dekanat::findSubject(string title) {
 	vector<Subject*>::iterator subject = find_if(this->subjects.begin(), this->subjects.end(), [title](const Subject* subject) { return subject->title == title; });
 	return *subject;
 }
-
-// Функции вывода сущностей
 
 void Dekanat::printStudents() {
 	for (auto student : this->students) {

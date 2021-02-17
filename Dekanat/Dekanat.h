@@ -8,6 +8,7 @@
 #include "Mark.h"
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class Student;
@@ -39,6 +40,12 @@ public:
 	Dekanat* addSubject(Subject* subject);
 
 	Dekanat* addMark(Student* student, Subject* subject, float mark);
+
+	// Функции удаления сущностей
+
+	void removeSubject(Subject* subject);
+
+	void removeGroup(Group* group);
 
 	// Функции поиска сущностей
 

@@ -54,5 +54,12 @@ int main() {
 	PhysTech->printStudents();
 	PhysTech->printSubjects();
 
+	unix->remove();
+	PhysTech->printSubjects();
+	cout << unix->title << endl;
+
+	Kolesnikov->removeGroup();
+	cout << Kolesnikov->group->title << endl;
+
 	return 1;
 }

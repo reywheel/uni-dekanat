@@ -1,5 +1,16 @@
 #include "Student.h"
 
+void Student::removeSubject(Subject* subject)
+{
+	auto removeIterator = find(this->subjects.begin(), this->subjects.end(), subject);
+	if (removeIterator != this->subjects.end()) this->subjects.erase(removeIterator);
+}
+
+void Student::removeGroup()
+{
+	this->group = Group::getUndefinedGroup();
+}
+
 Student::Student(string lastName, string firstName, string secondName, int age) {
 	this->lastName = lastName;
 	this->firstName = firstName;

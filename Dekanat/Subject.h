@@ -8,6 +8,8 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
 class Dekanat;
@@ -30,6 +32,8 @@ public:
 	void addStudent(Student* student);
 
 	void addMark(Student* student, float mark);
+
+	void remove();
 };
 
 #endif

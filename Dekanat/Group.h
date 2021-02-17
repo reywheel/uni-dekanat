@@ -13,6 +13,8 @@ class Student;
 class Dekanat;
 
 class Group {
+private:
+	static Group* undefinedGroup;
 public:
 	string title;
 	vector<Student*> studets;
@@ -20,6 +22,8 @@ public:
 	friend class Dekanat;
 
 	Group(string title);
+
+	static Group* getUndefinedGroup();
 
 	static Group* create(string title);
 

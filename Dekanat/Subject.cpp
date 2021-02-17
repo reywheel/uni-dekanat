@@ -25,3 +25,11 @@ void Subject::addMark(Student* student, float mark) {
 	student->markList.push_back(newMark);
 	dekanat->progressList.push_back(newMark);
 }
+
+void Subject::remove()
+{
+	this->dekanat->removeSubject(this);
+	for (auto student : this->students) {
+		student->removeSubject(this);
+	}
+}
