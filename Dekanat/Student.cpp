@@ -11,6 +11,10 @@ void Student::removeGroup()
 	this->group = Group::getUndefinedGroup();
 }
 
+void Student::remove() {
+	this->isDeleted = true;
+}
+
 Student::Student(string lastName, string firstName, string secondName, int age) {
 	this->lastName = lastName;
 	this->firstName = firstName;

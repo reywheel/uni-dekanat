@@ -43,10 +43,6 @@ public:
 
 	// Функции удаления сущностей
 
-	void removeSubject(Subject* subject);
-
-	void removeGroup(Group* group);
-
 	// Функции поиска сущностей
 
 	Student* findStudent(string lastName);
@@ -57,11 +53,11 @@ public:
 
 	// Функции вывода сущностей
 
-	void printStudents();
+	void printStudents(bool withDeleted = false);
 
-	void printGroups();
+	void printGroups(bool withDeleted = false);
 
-	void printSubjects();
+	void printSubjects(bool withDeleted = false);
 };
 
 #endif

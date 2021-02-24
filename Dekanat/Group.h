@@ -17,15 +17,18 @@ private:
 	static Group* undefinedGroup;
 public:
 	string title;
+	bool isDeleted = false;
 	vector<Student*> studets;
 	Dekanat* dekanat;
 	friend class Dekanat;
 
 	Group(string title);
 
-	static Group* getUndefinedGroup();
-
 	static Group* create(string title);
+
+	void remove();
+
+	static Group* getUndefinedGroup();
 
 	Group* setDekanat(Dekanat* dekanat);
 

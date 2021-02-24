@@ -20,10 +20,13 @@ public:
 	vector<Subject*> subjects;
 	Dekanat* dekanat;
 	vector<Mark*> markList;
+	bool isDeleted = false;
 
 	Student(string lastName, string firstName, string secondName, int age);
 
 	static Student* create(string lastName, string firstName, string secondName, int age);
+	
+	void remove();
 
 	// Добавление сущностей
 

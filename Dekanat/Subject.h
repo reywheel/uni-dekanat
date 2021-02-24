@@ -19,6 +19,7 @@ class Mark;
 class Subject {
 public:
 	string title;
+	bool isDeleted = false;
 	vector<Student*> students;
 	vector<Mark*> markList;
 	Dekanat* dekanat;

@@ -51,15 +51,16 @@ int main() {
 	PhysTech->addMark(Zolotchenko, informationSystems, 4);
 
 	PhysTech->printGroups();
-	PhysTech->printStudents();
-	PhysTech->printSubjects();
+	IS1->remove();
+	PhysTech->printGroups();
 
+	PhysTech->printStudents();
+	Kolesnikov->remove();
+	PhysTech->printStudents();
+
+	PhysTech->printSubjects();
 	unix->remove();
 	PhysTech->printSubjects();
-	cout << unix->title << endl;
-
-	Kolesnikov->removeGroup();
-	cout << Kolesnikov->group->title << endl;
 
 	return 1;
 }

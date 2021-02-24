@@ -1,25 +1,5 @@
 #include "Dekanat.h"
 
-void Dekanat::removeSubject(Subject* subject)
-{
-	auto removeIterator = find(this->subjects.begin(), this->subjects.end(), subject);
-	if (removeIterator != this->subjects.end()) this->subjects.erase(removeIterator);
-
-	for (auto student : this->students) {
-		student->removeSubject(subject);
-	}
-}
-
-void Dekanat::removeGroup(Group* group)
-{
-	auto removeIterator = find(this->groups.begin(), this->groups.end(), group);
-	if (removeIterator != this->groups.end()) this->groups.erase(removeIterator);
-
-	for (auto student : this->students) {
-		student->removeGroup();
-	}
-}
-
 Dekanat::Dekanat(string title) {
 	this->title = title;
 }
@@ -64,23 +44,26 @@ Subject* Dekanat::findSubject(string title) {
 	return *subject;
 }
 
-void Dekanat::printStudents() {
+void Dekanat::printStudents(bool withDeleted) {
 	for (auto student : this->students) {
-		cout << student->lastName << " " << student->firstName << " " << student->secondName << ": " << student->age << ": " << student->group->title << endl;
+		if (!student->isDeleted || withDeleted)
+			cout << student->lastName << " " << student->firstName << " " << student->secondName << ": " << student->age << ": " << student->group->title << endl;
 	}
 	cout << endl;
 }
 
-void Dekanat::printGroups() {
+void Dekanat::printGroups(bool withDeleted) {
 	for (auto group : this->groups) {
-		cout << group->title << endl;
+		if (!group->isDeleted || withDeleted)
+			cout << group->title << endl;
 	}
 	cout << endl;
 }
 
-void Dekanat::printSubjects() {
+void Dekanat::printSubjects(bool withDeleted) {
 	for (auto subject : this->subjects) {
-		cout << subject->title << endl;
+		if (!subject->isDeleted || withDeleted)
+			cout << subject->title << endl;
 	}
 	cout << endl;
 }

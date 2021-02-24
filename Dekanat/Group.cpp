@@ -16,6 +16,10 @@ Group* Group::getUndefinedGroup()
 	}
 }
 
+void Group::remove() {
+	this->isDeleted = true;
+}
+
 Group* Group::create(string title) {
 	return new Group(title);
 }

@@ -28,8 +28,5 @@ void Subject::addMark(Student* student, float mark) {
 
 void Subject::remove()
 {
-	this->dekanat->removeSubject(this);
-	for (auto student : this->students) {
-		student->removeSubject(this);
-	}
+	this->isDeleted = true;
 }
