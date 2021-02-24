@@ -47,7 +47,7 @@ Subject* Dekanat::findSubject(string title) {
 void Dekanat::printStudents(bool withDeleted) {
 	for (auto student : this->students) {
 		if (!student->isDeleted || withDeleted)
-			cout << student->lastName << " " << student->firstName << " " << student->secondName << ": " << student->age << ": " << student->group->title << endl;
+			cout << student->lastName << " " << student->firstName << " " << student->secondName << ": " << student->age << endl;
 	}
 	cout << endl;
 }

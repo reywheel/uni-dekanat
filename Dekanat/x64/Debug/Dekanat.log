@@ -1,0 +1,9 @@
+﻿  Dekanat.cpp
+  Group.cpp
+  Main.cpp
+  Mark.cpp
+  Student.cpp
+  Subject.cpp
+  Создание кода...
+Main.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: static void __cdecl Archivator::archive(class Dekanat *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?archive@Archivator@@SAXPEAVDekanat@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) в функции main.
+C:\University\4 семестр\Технологии программирования на C++\Программы\Dekanat\x64\Debug\Dekanat.exe : fatal error LNK1120: неразрешенных внешних элементов: 1

@@ -145,6 +145,7 @@
     <ClCompile Include="Mark.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="Archivator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dekanat.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Mark.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Subject.h" />
+    <ClInclude Include="Archivator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

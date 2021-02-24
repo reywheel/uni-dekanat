@@ -9,6 +9,7 @@
 #include "Group.h"
 #include "Subject.h"
 #include "Dekanat.h"
+#include "Archivator.h"
 
 #include <iostream>
 using namespace std;
@@ -50,7 +51,7 @@ int main() {
 	PhysTech->addMark(Kolesnikov, physics, 4);
 	PhysTech->addMark(Zolotchenko, informationSystems, 4);
 
-	PhysTech->printGroups();
+	/*PhysTech->printGroups();
 	IS1->remove();
 	PhysTech->printGroups();
 
@@ -60,7 +61,14 @@ int main() {
 
 	PhysTech->printSubjects();
 	unix->remove();
-	PhysTech->printSubjects();
+	PhysTech->printSubjects();*/
+
+	Archivator* archivator = new Archivator();
+	archivator->archive(PhysTech, "archive.txt");
+	Dekanat* newDekanat = archivator->unzip("archive.txt");
+	newDekanat->printGroups(true);
+	newDekanat->printSubjects(true);
+	newDekanat->printStudents(true);
 
 	return 1;
 }
