@@ -5,6 +5,12 @@
 //Функции с отчётами : общий список студентов(либо всех, либо по группам), все оценки указанного студента, все оценки заданной группы по заданному предмету,
 // поиск успевающих или отстающих в указанной группе, либо по указанному предмету, либо вообще.
 
+// TODO:
+// Решить с точкой запятой в конце строки при архивации
+// Сделать удобнее работу с индексами разбитой строки при разархивации (через массив со строковыми ключами)
+// Сделать перенос связей при unzipe
+// Передача имени нового деканата при unzipe
+
 #include "Student.h"
 #include "Group.h"
 #include "Subject.h"
@@ -64,11 +70,18 @@ int main() {
 	PhysTech->printSubjects();*/
 
 	Archivator* archivator = new Archivator();
-	archivator->archive(PhysTech, "archive.txt");
-	Dekanat* newDekanat = archivator->unzip("archive.txt");
+	archivator->serialize(PhysTech, "archive.txt");
+	Dekanat* newDekanat = archivator->unserialize("archive.txt");
 	newDekanat->printGroups(true);
 	newDekanat->printSubjects(true);
 	newDekanat->printStudents(true);
-
+	Kolesnikov = newDekanat->findStudent("Колесников");
+	Zolotchenko = newDekanat->findStudent("Золотченко");
+	cout << Kolesnikov->subjects[1]->title << endl;
+	cout << Zolotchenko->subjects[1]->title << endl;
+	cout << Kolesnikov->group->title << endl;
+	cout << Zolotchenko->group->title << endl;
+	cout << Kolesnikov->markList[0]->mark << endl;
+	cout << Zolotchenko->markList[0]->mark << endl;
 	return 1;
 }

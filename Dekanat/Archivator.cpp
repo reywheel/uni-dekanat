@@ -24,6 +24,30 @@ void Archivator::addStudent(string studentInfoString)
 	this->dekanat->addStudent(newStudent);
 }
 
+void Archivator::addBindStudentToSubject(string bindInfoString)
+{
+	vector<string> chunks = this->split(bindInfoString, ';');
+	Student* student = this->dekanat->findStudent(chunks[1]);
+	Subject* subject = this->dekanat->findSubject(chunks[2]);
+	student->addSubject(subject);
+}
+
+void Archivator::addBindStudentToGroup(string bindInfoString)
+{
+	vector<string> chunks = this->split(bindInfoString, ';');
+	Student* student = this->dekanat->findStudent(chunks[1]);
+	Group* group = this->dekanat->findGroup(chunks[2]);
+	student->setGroup(group);
+}
+
+void Archivator::addBindStudentToMark(string bindInfoString)
+{
+	vector<string> chunks = this->split(bindInfoString, ';');
+	Student* student = this->dekanat->findStudent(chunks[1]);
+	Subject* subject = this->dekanat->findSubject(chunks[2]);
+	student->addMark(subject, std::stof(chunks[3]));
+}
+
 
 vector<string> Archivator::split(string stroke, char separator)
 {
@@ -41,7 +65,7 @@ vector<string> Archivator::split(string stroke, char separator)
 	return vec;
 }
 
-void Archivator::archive(Dekanat* dekanat, string filename) {
+void Archivator::serialize(Dekanat* dekanat, string filename) {
 	ofstream fout(filename);
 
 	if (fout.is_open()) {
@@ -68,10 +92,32 @@ void Archivator::archive(Dekanat* dekanat, string filename) {
 			fout << student->isDeleted << ";";
 			fout << "%";
 		}
+
+		for (auto student : dekanat->students) {
+			for (auto subject : student->subjects) {
+				fout << "student-subject" << ";";
+				fout << student->lastName << ";";
+				fout << subject->title << ";";
+				fout << "%";
+			}
+
+			for (auto mark : student->markList) {
+				fout << "student-mark" << ";";
+				fout << student->lastName << ";";
+				fout << mark->subject->title << ";";
+				fout << mark->mark << ";";
+				fout << "%";
+			}
+
+			fout << "student-group" << ";";
+			fout << student->lastName << ";";
+			fout << student->group->title << ";";
+			fout << "%";
+		}
 	}
 }
 
-Dekanat* Archivator::unzip(string filename) {
+Dekanat* Archivator::unserialize(string filename) {
 	ifstream fin(filename);
 	string buff;
 	string type;
@@ -85,6 +131,9 @@ Dekanat* Archivator::unzip(string filename) {
 			if (type == "group") this->addGroup(buff);
 			if (type == "subject") this->addSubject(buff);
 			if (type == "student") this->addStudent(buff);
+			if (type == "student-subject") this->addBindStudentToSubject(buff);
+			if (type == "student-group") this->addBindStudentToGroup(buff);
+			if (type == "student-mark") this->addBindStudentToMark(buff);
 		}
 	}
 

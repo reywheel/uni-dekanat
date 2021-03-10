@@ -17,10 +17,13 @@ private:
 	void addGroup(string groupInfoString);
 	void addSubject(string subjectInfoString);
 	void addStudent(string studentInfoString);
+	void addBindStudentToSubject(string bindInfoString);
+	void addBindStudentToGroup(string bindInfoString);
+	void addBindStudentToMark(string bindInfoString);
 	vector<string> split(string stroke, char separator);
 public:
-	void archive(Dekanat* dekanat, string filename);
-	Dekanat* unzip(string filename);
+	void serialize(Dekanat* dekanat, string filename);
+	Dekanat* unserialize(string filename);
 };
 
 #endif // !ARCHIVATOR_H
