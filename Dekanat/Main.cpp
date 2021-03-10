@@ -16,13 +16,10 @@
 #include "Subject.h"
 #include "Dekanat.h"
 #include "Archivator.h"
+#include "Report.h"
 
 #include <iostream>
 using namespace std;
-
-class Report {
-
-};
 
 int main() {
 	setlocale(0, "");
@@ -43,7 +40,7 @@ int main() {
 	PhysTech->addSubject(unix);
 
 	IS1->addStudent(Kolesnikov);
-	Zolotchenko->setGroup(IS2);
+	Zolotchenko->setGroup(IS1);
 
 	Kolesnikov->addSubject(informationSystems);
 	Zolotchenko->addSubject(unix);
@@ -51,11 +48,23 @@ int main() {
 	physics->addStudent(Zolotchenko);
 
 	Kolesnikov->addMark(unix, 5);
-	Zolotchenko->addMark(physics, 5);
+	Kolesnikov->addMark(unix, 5);
+	Zolotchenko->addMark(physics, 3);
 	informationSystems->addMark(Kolesnikov, 5);
-	unix->addMark(Zolotchenko, 5);
+	unix->addMark(Zolotchenko, 3);
 	PhysTech->addMark(Kolesnikov, physics, 4);
 	PhysTech->addMark(Zolotchenko, informationSystems, 4);
+
+	Student* Kudryashov = Student::create("Кудряшов", "Алексей", "Алексеевич", 20)->setDekanat(PhysTech);
+	Kudryashov->setGroup(IS1);
+	Kudryashov->addSubject(unix);
+	Kudryashov->addSubject(informationSystems);
+	Kudryashov->addSubject(physics);
+	Kudryashov->addMark(unix, 4);
+	Kudryashov->addMark(informationSystems, 5);
+	Kudryashov->addMark(physics, 3);
+
+
 
 	/*PhysTech->printGroups();
 	IS1->remove();
@@ -82,6 +91,14 @@ int main() {
 	cout << Kolesnikov->group->title << endl;
 	cout << Zolotchenko->group->title << endl;
 	cout << Kolesnikov->markList[0]->mark << endl;
-	cout << Zolotchenko->markList[0]->mark << endl;
+	cout << Zolotchenko->markList[0]->mark << endl << endl;
+
+	Report* report = new Report(PhysTech);
+	report->printAllStudents();
+	report->printStudentMarks("Колесников");
+	report->printMarksByGroupAndSubject("ИС-1", "Unix");
+	report->printStatisticByGroup("ИС-1", true);
+	report->printStatisticByGroup("ИС-1", false);
+
 	return 1;
 }

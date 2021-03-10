@@ -15,6 +15,7 @@ class Student;
 class Subject;
 class Group;
 class Mark;
+class Report;
 
 class Dekanat {
 private:
@@ -29,6 +30,7 @@ public:
 	friend class Group;
 	friend class Subject;
 	friend class Archivator;
+	friend class Report;
 
 	Dekanat(string title);
 
